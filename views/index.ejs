@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html ng-app='nodeapp'>
 
 <head>
     <title>Node App</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <link href="/css/flat-ui.min.css" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="/css/style.css">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -40,6 +41,9 @@
                         <a href="#">Contact</a>
                     </li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="../navbar-fixed-top/">Admin login</a></li>
+                </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -50,46 +54,35 @@
     <div class="container">
         <div class="row">
             <!-- Blog Post Content Column -->
-            <div class="col-lg-8">
+            <div class="col-lg-9">
                 <!-- Blog Post -->
                 <!-- Title -->
-                <h1>Node App</h1>
+                <h3>Node App</h3>
                 <!-- Author -->
                 <p class="lead">
-                	An elegent app to share something with world! 
+                	A simple app to share something with world! 
                 </p>
 
                 <input class="btn btn-default" type="button" value="Post a Message">
                 <input class="btn btn-default" type="button" value="Search Message">
                 <input class="btn btn-default" type="button" value="Refresh">
                 <hr>
-                <table class="table table-hover">
+                <table class="table table-condensed" ng-controller="postCtrl">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
+                            <th>Content</th>
+                            <th>Creator</th>
+                            <th>Created At</th>
                         </tr>
                     </thead>
+
                     <tbody>
-                        <tr>
+                        <tr ng-repeat="post in postList">
                             <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
+                            <td>{{ post.content }}</td>
+                            <td>{{ post.creator }}</td>
+                            <td>{{ post.created_at }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -100,38 +93,32 @@
 
 
             <!-- Blog Sidebar Widgets Column -->
-            <div class="col-md-4">
-            	<!-- Comments Form -->
-            	<div class="well">
-            	    <h4>Leave a Comment:</h4>
-            	    <form role="form">
-            	        <div class="form-group">
-            	            <textarea class="form-control" rows="3"></textarea>
-            	        </div>
-            	        <button type="submit" class="btn btn-primary">Submit</button>
-            	    </form>
-            	</div>
+            <div class="col-md-3">
+ 
+        	    <h5>Post a Message:</h5>
+        	    <form role="form">
+        	        <div class="form-group">
+        	            <textarea id="content" class="form-control" rows="3"></textarea>
+        	        </div>
+        	        <div class="form-group">
+        	              <input type="text" id="creator" class="form-control" placeholder="Your Name (optional)">
+        	        </div>
+        	        <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+        	    </form>
             	<hr>
 
                 <!-- Blog Search Well -->
-                <div class="well">
-                    <h4>Blog Search</h4>
-                    <div class="input-group">
-                        <input type="text" class="form-control">
-                        <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                        </span>
-                    </div>
-                    <!-- /.input-group -->
+                <h4>Message Search</h4>
+                <div class="input-group">
+                    <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                    </span>
                 </div>
+                <!-- /.input-group -->
 
-                <!-- Side Widget Well -->
-                <div class="well">
-                    <h4>Side Widget Well</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
-                </div>
             </div>
         </div>
         <!-- /.row -->
@@ -140,7 +127,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; Zhiheng Yi</p>
                 </div>
             </div>
             <!-- /.row -->
