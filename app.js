@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var hpp = require('hpp');
 
 var indexRoutes = require('./routes/index');
 var apiRoutes = require('./routes/api');
@@ -20,6 +21,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+app.use(hpp());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
