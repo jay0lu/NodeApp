@@ -1,31 +1,24 @@
 var app = angular.module('nodeapp', []);
 app.controller('postCtrl', function($scope, $http) {
 
-	// $scope.postList = function() {
-	// 	$http.get('/api').then(function(response) {
-	// 	    return response.data.data;
-	// 	});
-	// };
-
-    $http.get('/api').then(function(response) {
+    $http.get('/api/posts').then(function(response) {
         $scope.postList = response.data.data;
     });
 
 });
+
 $('#submit').click(function() {
     var content = $('#content').val();
     var creator = $('#creator').val();
     console.log(content + creator);
 
-    $.post("api/", {
+    $.post("/api/posts/", {
             content: content,
             creator: creator
         },
         function(data, status) {
             //
         });
-
-
 });
 
 $(document).ready(function() {
@@ -51,6 +44,32 @@ $(document).ready(function() {
             }
         }
     });
+
+    $('#login_form').formValidation({
+           framework: 'bootstrap',
+           excluded: ':disabled',
+           icon: {
+               valid: 'glyphicon glyphicon-ok',
+               invalid: 'glyphicon glyphicon-remove',
+               validating: 'glyphicon glyphicon-refresh'
+           },
+           fields: {
+               username: {
+                   validators: {
+                       notEmpty: {
+                           message: 'The username is required'
+                       }
+                   }
+               },
+               password: {
+                   validators: {
+                       notEmpty: {
+                           message: 'The password is required'
+                       }
+                   }
+               }
+           }
+       });
 });
 
 //---------- Form Validation --------

@@ -40,7 +40,9 @@ mongoose.connect('mongodb://localhost/nodeapp');
 // });
 
 
-Post.find({ 'creator': 'Chen' }, function (err, posts) {
-  if (err) return handleError(err);
-  console.log('%s %s', posts[0].content, posts[0].creator); // Space Ghost is a talk show host.
+Post.find({
+    'creator': 'Chen'
+}, function(err, posts) {
+    if (err) return handleError(err);
+    console.log('%s %s', posts[0].content, posts[0].creator); // Space Ghost is a talk show host.
 });
