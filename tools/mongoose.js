@@ -34,7 +34,13 @@ mongoose.connect('mongodb://localhost/nodeapp');
 // });
 
 //Find all users
-Post.find({}, function(err, posts) {
-    if (err) throw err;
-    console.log(posts);
+// Post.find({}, function(err, posts) {
+//     if (err) throw err;
+//     console.log(posts);
+// });
+
+
+Post.find({ 'creator': 'Chen' }, function (err, posts) {
+  if (err) return handleError(err);
+  console.log('%s %s', posts[0].content, posts[0].creator); // Space Ghost is a talk show host.
 });

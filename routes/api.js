@@ -7,18 +7,25 @@ mongoose.connect('mongodb://localhost/nodeapp');
 
 router.route('/')
 	.get(function(req, res) {
-		// var accpectableParams = ['postId', 'createdAt', 'count', 'creator', lastest];
+		// var accpectableParams = ['postId', 'createdAt', 'count', 'creator'];
 		// if (_.contains()) {
 		// }
 		var resJson = {
 			'success' : true,
 			'data' : {}
 		};
+
+		//all Post
 		Post.find({}, function(err, posts) {
 		    if (err) throw err;
 		    resJson.data = posts;
 		    res.send(resJson);
+		}).sort({
+		    created_at: 1
 		});
+
+
+
 	})
 
 	.post(function(req, res) {
@@ -47,7 +54,6 @@ router.route('/')
 		    });
 		    return;
 		});
-
 	})
 
 	.put(function(req, res) {

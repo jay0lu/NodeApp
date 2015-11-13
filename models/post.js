@@ -7,7 +7,6 @@ var postSchema = new Schema({
 	created_at : Date,
 	updated_at : Date
 });
-
 postSchema.pre('save', function(next) {
     var currentDate = new Date();
     this.updated_at = currentDate;
@@ -16,6 +15,5 @@ postSchema.pre('save', function(next) {
     }
     next();
 });
-
 var Post = mongoose.model('Post', postSchema);
 module.exports = Post;
