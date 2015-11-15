@@ -3,9 +3,16 @@ var token;
 
 app.controller('postCtrl', function($scope, $http) {
 
-
     $http.get('/api/posts').then(function(response) {
-        $scope.postList = response.data.data;
+        var data = response.data.data;
+        if (data != 'NOT FOUND') {
+            $scope.postList = data;
+        } else {
+            $scope.postList = [{
+                'content' : 'Welcome to Node App, post you first message now!',
+                'creator' : 'admin'
+            }];
+        }
     });
 
     $scope.showBtn = function () {
@@ -134,11 +141,18 @@ function checkPalindrom(str) {
 }
 
 function refreshTable () {
-    //刷新状体提示
     $('#posts_table').addClass('spinner-loader');
     var scope = angular.element($('#posts_table')).scope();
+
     $.get('/api/posts', function( response ) {
-        scope.postList = response.data;
+        if (response.data != 'NOT FOUND') {
+            scope.postList = response.data;
+        } else {
+            scope.postList = [{
+                'content' : 'Welcome to Node App, post you first message now!',
+                'creator' : 'admin'
+            }];
+        }
         scope.$apply();
         $('#posts_table').removeClass('spinner-loader');
     });

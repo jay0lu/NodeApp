@@ -82,7 +82,7 @@
                     </thead>
 
                     <tbody>
-                        <tr ng-repeat="post in postList">
+                        <tr ng-repeat="post in postList track by $index">
                             <td>{{ post.content }}</td>
                             <td>{{ post.creator }}</td>
                             <td>{{ post.created_at }}</td>

@@ -176,7 +176,7 @@ authRouter.route('/posts/:postId')
 		        	    data: post
 		        	});
 		        } else {
-		        	return res.status(403).send({ 
+		        	return res.status(204).send({ 
 		        	    success: false, 
 		        	    message: 'No Post Found' 
 		        	});
