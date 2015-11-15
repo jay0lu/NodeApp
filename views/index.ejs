@@ -5,8 +5,8 @@
     <title>Node App</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
     <link href="/css/flat-ui.min.css" rel="stylesheet">
-
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="http://css-spinners.com/css/spinner/spinner.css" type="text/css">
     <link rel="shortcut icon" href="/img/favicon.ico">
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -26,7 +26,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Node App</a>
+                <a class="navbar-brand" href="/">Node App</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -63,17 +63,21 @@
                 <p class="lead">
                 	A simple app to share something with the world! 
                 </p>
-
-                <input class="btn btn-default" type="button" value="Post a Message">
-                <input class="btn btn-default" type="button" value="Search Message">
-                <input class="btn btn-default" type="button" value="Refresh">
+                <p id="token"></p>
                 <hr>
-                <table class="table table-condensed" ng-controller="postCtrl">
+                <input id="post_btn" class="btn btn-default" type="button" value="Post a Message">
+                <input id="search_btn" class="btn btn-default" type="button" value="Search Message">
+                <input id="refresh_btn" class="btn btn-default " type="button" value="Refresh">
+                <!-- <button id="refresh_btn" class="btn btn-default ladda-button" data-style="expand-right"><span class="ladda-label">Refresh</span></button> -->
+
+                <hr>
+                <table id="posts_table" class="table table-condensed " ng-controller="postCtrl">
                     <thead>
                         <tr>
                             <th>Content</th>
                             <th>Creator</th>
                             <th>Created At</th>
+                            <th ng-show="showBtn()">OP.</th>
                         </tr>
                     </thead>
 
@@ -82,6 +86,15 @@
                             <td>{{ post.content }}</td>
                             <td>{{ post.creator }}</td>
                             <td>{{ post.created_at }}</td>
+                            <td>
+                                <button class="edit_post btn btn-primary btn-xs" ng-click="editPost($event, post)" ng-show="showBtn()">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-xs delete_post" ng-click="deletePost($event, post)" ng-show="showBtn()"><span class="glyphicon glyphicon-trash"></span></button>
+                            </td>
+
                         </tr>
                     </tbody>
                 </table>
@@ -89,18 +102,16 @@
 
             </div>
 
-
-
             <!-- Blog Sidebar Widgets Column -->
             <div class="col-lg-3">
  
         	    <h5>Post a Message:</h5>
         	    <form id="post_form" role="form">
         	        <div class="form-group">
-        	            <textarea id="content" class="form-control" name="content" rows="3"></textarea>
+        	            <textarea id="content_input" class="form-control" name="content" rows="3"></textarea>
         	        </div>
         	        <div class="form-group">
-        	              <input type="text" id="creator" class="form-control" name="creator" placeholder="Your Name (optional)">
+        	              <input type="text" id="creator_input" class="form-control" name="creator" placeholder="Your Name (optional)">
         	        </div>
         	        <button type="submit" id="submit" class="btn btn-primary">Submit</button>
         	    </form>
@@ -109,7 +120,7 @@
                 <!-- Blog Search Well -->
                 <h4>Message Search</h4>
                 <div class="input-group">
-                    <input type="text" class="form-control">
+                    <input id="search_input" type="text" class="form-control">
                     <span class="input-group-btn">
                     <button class="btn btn-default" type="button">
                         <span class="glyphicon glyphicon-search"></span>
@@ -147,28 +158,30 @@
                 </div>
 
                 <div class="modal-body">
-                    <form id="login_form" method="POST" action="api/auth" class="form-horizontal">
+
+                    <form id="login_form" role="form" class="form-horizontal">
                         <div class="form-group">
                             <label class="col-xs-3 control-label">Username</label>
                             <div class="col-xs-5">
-                                <input type="text" class="form-control" name="username" />
+                                <input id="username_input" type="text" class="form-control" name="username" />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-xs-3 control-label">Password</label>
                             <div class="col-xs-5">
-                                <input type="password" class="form-control" name="password" />
+                                <input id="password_input" type="password" class="form-control" name="password" />
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-xs-5 col-xs-offset-3">
-                                <button type="submit" class="btn btn-primary">Login</button>
+                                <button id="login_btn" type="button" class="btn btn-primary">Login</button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                             </div>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
@@ -176,10 +189,10 @@
 
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script src="/js/formvalidation.js"></script>
     <script src="/js/bootstrap.js"></script>
+
     <script type="text/javascript" src="/js/index.js"></script>
 </body>
 

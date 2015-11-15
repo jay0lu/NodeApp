@@ -6,8 +6,8 @@ var config = require('../config');
 var router = express.Router();
 var authRouter = express.Router();
 var jwt = require('jsonwebtoken');
+var passUtil = require('../tools/passUtil');
 
-var _ = require('underscore');
 mongoose.connect('mongodb://localhost/nodeapp');
 
 //------------------- router -------------------
@@ -29,7 +29,9 @@ router.route('/auth').post(function (req, res) {
 				message : 'Authentication Failed. User Not Found.'
 			});
 		} else {
-			if (admin.password != req.body.password) {
+			var plainPass = req.body.password;
+			var hashedPass = admin.password;
+			if (!passUtil.validatePassword(plainPass, hashedPass)) {
 				res.status(400).json({
 					success : false,
 					message : 'Authentication Failed. Wrong Password.'
@@ -89,8 +91,8 @@ router.route('/posts')
 		var content = req.body.content;
 		var creator = req.body.creator;
 
-		if (creator === undefined) creator = 'Secret user';
-		if (content === undefined) {
+		if (!creator) creator = 'Secret user';
+		if (!content) {
 			return res.status(400).json({
 				success : false,
 			    message: 'Params Missing'
@@ -186,7 +188,6 @@ authRouter.route('/posts/:postId')
 	})
 	.delete(function (req, res) {
 		var postId = req.params.postId;
-
 		if (!postId) {
 			return res.status(403).send({ 
 			    success: false, 
