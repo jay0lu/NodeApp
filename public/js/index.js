@@ -8,10 +8,10 @@ app.controller('postCtrl', function($scope, $http) {
         if (data != 'NOT FOUND') {
             $scope.postList = data;
         } else {
-            $scope.postList = [{
-                'content' : 'Welcome to Node App, post you first message now!',
-                'creator' : 'admin'
-            }];
+            // $scope.postList = [{
+            //     'content' : 'Welcome to Node App, post you first message now!',
+            //     'creator' : 'admin'
+            // }];
         }
     });
 
@@ -171,10 +171,7 @@ function refreshTable (data) {
         if (response.data != 'NOT FOUND') {
             scope.postList = response.data;
         } else {
-            scope.postList = [{
-                'content' : 'Welcome to Node App, post you first message now!',
-                'creator' : 'admin'
-            }];
+            scope.postList = undefined
         }
         scope.$apply();
         $('#posts_table').removeClass('spinner-loader');
