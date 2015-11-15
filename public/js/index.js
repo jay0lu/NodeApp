@@ -19,9 +19,9 @@ app.controller('postCtrl', function($scope, $http) {
         return token;
     };
 
-    $scope.editPost = function ($event, post) {
-        console.log(token);
-    };
+    // $scope.editPost = function ($event, post) {
+    //     console.log(token);
+    // };
 
     $scope.deletePost = function ($event, post) {
         $.ajax({
@@ -36,21 +36,21 @@ app.controller('postCtrl', function($scope, $http) {
     };
 });
 
-// $('#post_form').unbind('submit').submit();
-// $("#post_form").submit(function(event) {
-//     event.preventDefault();
-//     var content = $('#content_input').val();
-//     var creator = $('#creator_input').val();
-//     $.post("/api/posts/", {
-//             content: content,
-//             creator: creator
-//         },
-//         function(data, status) {
-//             $("#refresh_btn").trigger("click");
-//         });
-//     event.preventDefault();
-//     return false;
-// });
+$("#post_form").submit(function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    var content = $('#content_input').val();
+    var creator = $('#creator_input').val();
+    $.post("/api/posts/", {
+            content: content,
+            creator: creator
+        },
+        function(data, status) {
+            refreshTable();
+        });
+    console.log('123');
+    return false;
+});
 
 $('#content_input').bind('input propertychange', function() {
     var content = $('#content_input').val();
@@ -60,17 +60,6 @@ $('#content_input').bind('input propertychange', function() {
         $('#palindrome_div').hide();
 
     }
-});
-$('#submit').click(function() {
-    var content = $('#content_input').val();
-    var creator = $('#creator_input').val();
-    $.post("/api/posts/", {
-            content: content,
-            creator: creator
-        },
-        function(data, status) {
-            $("#refresh_btn").trigger("click");
-        });
 });
 
 $('#search_btn').click(function () {
@@ -90,25 +79,24 @@ $('#search_submit').click(function () {
     refreshTable({'keyword' : keyword});
 });
 
-$('#login_btn').click(function() {
+$('#login_form').submit(function(e) {
+    e.preventDefault();
     var username = $('#username_input').val();
     var password = $('#password_input').val();
-
     var url = "api/auth"; // the script where you handle the form input.
-
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: {'username' : username, 'password' : password},
-            success: function(data) {
-                $('#loginModal').modal('toggle');
-                token = data.token;
-                var scope = angular.element($('#posts_table')).scope();
-                scope.$apply();
-                displayToken(token);
-            }
-        });
-
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: {'username' : username, 'password' : password},
+        success: function(data) {
+            
+            token = data.token;
+            var scope = angular.element($('#posts_table')).scope();
+            scope.$apply();
+            displayToken(token);
+            $('#loginModal').modal('hide');
+        }
+    });
 });
 
 $(document).ready(function() {
@@ -171,7 +159,7 @@ function refreshTable (data) {
         if (response.data != 'NOT FOUND') {
             scope.postList = response.data;
         } else {
-            scope.postList = undefined
+            scope.postList = undefined;
         }
         scope.$apply();
         $('#posts_table').removeClass('spinner-loader');

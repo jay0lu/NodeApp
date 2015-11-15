@@ -65,7 +65,6 @@
                 <input id="post_btn" class="btn btn-default" type="button" value="Post a Message">
                 <input id="search_btn" class="btn btn-default" type="button" value="Search Message">
                 <input id="refresh_btn" class="btn btn-default " type="button" value="Refresh">
-                <!-- <button id="refresh_btn" class="btn btn-default ladda-button" data-style="expand-right"><span class="ladda-label">Refresh</span></button> -->
 
                 <hr>
                 <table id="posts_table" class="table table-condensed" ng-controller="postCtrl">
@@ -84,19 +83,11 @@
                             <td>{{ post.creator }}</td>
                             <td>{{ post.created_at }}</td>
                             <td>
-                                <button class="edit_post btn btn-primary btn-xs" ng-click="editPost($event, post)" ng-show="showBtn()">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </button>
-                            </td>
-                            <td>
                                 <button class="btn btn-danger btn-xs delete_post" ng-click="deletePost($event, post)" ng-show="showBtn()"><span class="glyphicon glyphicon-trash"></span></button>
                             </td>
-
                         </tr>
                     </tbody>
                 </table>
-
-
             </div>
 
             <!-- Blog Sidebar Widgets Column -->
@@ -125,7 +116,6 @@
                     </span>
                 </div>
                 <!-- /.input-group -->
-
             </div>
         </div>
         <!-- /.row -->
@@ -144,7 +134,7 @@
 
 
 
-    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
+    <div class="modal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -153,9 +143,7 @@
                     </button>
                     <h5 class="modal-title">Admin Login</h5>
                 </div>
-
                 <div class="modal-body">
-
                     <form id="login_form" role="form" class="form-horizontal">
                         <div class="form-group">
                             <label class="col-xs-3 control-label">Username</label>
@@ -170,16 +158,13 @@
                                 <input id="password_input" type="password" class="form-control" name="password" />
                             </div>
                         </div>
-
-
                         <div class="form-group">
                             <div class="col-xs-5 col-xs-offset-3">
-                                <button id="login_btn" type="button" class="btn btn-primary">Login</button>
+                                <button id="login_btn" type="submit" class="btn btn-primary">Login</button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                             </div>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
