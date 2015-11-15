@@ -20,7 +20,6 @@ app.controller('postCtrl', function($scope, $http) {
     };
 
     $scope.editPost = function ($event, post) {
-
         console.log(token);
     };
 
@@ -37,6 +36,31 @@ app.controller('postCtrl', function($scope, $http) {
     };
 });
 
+// $('#post_form').unbind('submit').submit();
+// $("#post_form").submit(function(event) {
+//     event.preventDefault();
+//     var content = $('#content_input').val();
+//     var creator = $('#creator_input').val();
+//     $.post("/api/posts/", {
+//             content: content,
+//             creator: creator
+//         },
+//         function(data, status) {
+//             $("#refresh_btn").trigger("click");
+//         });
+//     event.preventDefault();
+//     return false;
+// });
+
+$('#content_input').bind('input propertychange', function() {
+    var content = $('#content_input').val();
+    if (checkPalindrom(content) && content) {
+        $('#palindrome_div').show();
+    } else {
+        $('#palindrome_div').hide();
+
+    }
+});
 $('#submit').click(function() {
     var content = $('#content_input').val();
     var creator = $('#creator_input').val();
@@ -47,7 +71,6 @@ $('#submit').click(function() {
         function(data, status) {
             $("#refresh_btn").trigger("click");
         });
-
 });
 
 $('#search_btn').click(function () {
@@ -84,7 +107,7 @@ $('#login_btn').click(function() {
 });
 
 $(document).ready(function() {
-
+    $('#palindrome_div').hide();
     $('#post_form').formValidation({
         framework: 'bootstrap',
         icon: {
@@ -97,11 +120,6 @@ $(document).ready(function() {
                 validators: {
                     notEmpty: {
                         message: 'The message is required'
-                    },
-                    stringLength: {
-                        min: 10,
-                        max: 300,
-                        message: 'The message you send must be more than 10 and less than 300 characters long'
                     }
                 }
             }

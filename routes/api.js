@@ -78,7 +78,7 @@ router.route('/posts')
 		        if (err) throw err;
 		        if (posts.length !== 0) {
 		            resJson.data = posts;
-		            res.send(resJson);
+		            res.status(200).send(resJson);
 		        } else {
 		            resJson.success = false;
 		            resJson.data = 'NOT FOUND';
