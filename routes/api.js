@@ -63,17 +63,16 @@ router.route('/posts')
 			'data' : {}
 		};
 
-		var query = {};
-		if (postId !== undefined) query.postId = postId;
-		if (creator !== undefined) query.creator = creator;
+		var query = Post.find();
+		if (postId) query = query.where('postId').equals(postId);
+		if (creator) query = query.where('creator').equals(creator);
+		if (keyword) query = query.where('content').regex(keyword);
 
-		//Query database with keyword
-		if (keyword !== undefined) {
 
-		}
-		Post.find(query)
-			.limit(count)
-		    .sort({ created_at: -1 })
+		query.limit(count)
+		    .sort({
+		        created_at: -1
+		    })
 		    .exec(function(err, posts) {
 		        if (err) throw err;
 		        if (posts.length !== 0) {
@@ -85,6 +84,7 @@ router.route('/posts')
 		            res.status(200).send(resJson);
 		        }
 		    });
+
 	})
 
 	.post(function(req, res) {
