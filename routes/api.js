@@ -67,7 +67,7 @@ router.route('/posts')
 		if (postId) query = query.where('postId').equals(postId);
 		if (creator) query = query.where('creator').equals(creator);
 		if (keyword) query = query.where('content').regex(keyword);
-
+		if (createdAt) {}
 
 		query.limit(count)
 		    .sort({

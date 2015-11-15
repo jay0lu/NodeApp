@@ -85,6 +85,11 @@ $('#refresh_btn').click(function () {
     refreshTable();
 });
 
+$('#search_submit').click(function () {
+    var keyword = $('#search_input').val();
+    refreshTable({'keyword' : keyword});
+});
+
 $('#login_btn').click(function() {
     var username = $('#username_input').val();
     var password = $('#password_input').val();
@@ -158,11 +163,11 @@ function checkPalindrom(str) {
     return str == str.split('').reverse().join('');
 }
 
-function refreshTable () {
+function refreshTable (data) {
     $('#posts_table').addClass('spinner-loader');
     var scope = angular.element($('#posts_table')).scope();
 
-    $.get('/api/posts', function( response ) {
+    $.get('/api/posts', data,function( response ) {
         if (response.data != 'NOT FOUND') {
             scope.postList = response.data;
         } else {
