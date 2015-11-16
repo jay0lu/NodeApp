@@ -13,7 +13,8 @@ Node app is a a simple web app that everyone can use it to post some information
 - Open your browser and input : `http://localhost:3000`
 - Run nodeapp in production : `pm2 start server.js`
 
-###Files Structure
+###Sequence Diagram
+![alt tag](https://raw.github.com/yizhiheng/NodeApp/master/screenshots/SequenceDiagram.png)
 
 ###Endpoint Docs
 - Get all posts : `GET: /api/posts`
