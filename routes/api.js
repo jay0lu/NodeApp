@@ -8,7 +8,8 @@ var authRouter = express.Router();
 var jwt = require('jsonwebtoken');
 var passUtil = require('../tools/passUtil');
 
-mongoose.connect('mongodb://localhost/nodeapp');
+mongoose.connect(config.mongoConn.AWS);
+//mongoose.connect(config.mongoConn.local);
 
 //------------------- router -------------------
 router.route('/').get(function (req, res) {

@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 var passUtil = require('./passUtil');
 var Admin = require('../models/admin');
 var moment = require('moment');
-mongoose.connect('mongodb://localhost/nodeapp');
+var config = require('../config');
+mongoose.connect(config.mongoConn.AWS);
 
 // var newAdmin = new Admin({
 //     username: 'admin',
