@@ -1,6 +1,5 @@
 var app = angular.module('nodeapp', []);
 var token;
-
 app.controller('postCtrl', function($scope, $http) {
     $('#posts_table').addClass('spinner-loader');
     $http.get('/api/posts').then(function(response) {

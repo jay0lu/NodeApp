@@ -15,13 +15,13 @@ mongoose.connect(config.mongoConn.AWS);
 router.route('/').get(function (req, res) {
 	res.json({
 		success : true,
-	    message: 'hooray! welcome to my api!'
+	    message: 'hooray! welcome to nodeapp api!'
 	});
 });
 
 router.route('/auth').post(function (req, res) {
 	Admin.findOne({
-		username : req.body.username
+		username : req.body.username || req.query.username
 	}, function (err, admin) {
 		if (err) throw err;
 		if (!admin) {
@@ -30,7 +30,7 @@ router.route('/auth').post(function (req, res) {
 				message : 'Authentication Failed. User Not Found.'
 			});
 		} else {
-			var plainPass = req.body.password;
+			var plainPass = req.body.password || req.query.password;
 			var hashedPass = admin.password;
 			if (!passUtil.validatePassword(plainPass, hashedPass)) {
 				res.status(400).json({
@@ -86,8 +86,8 @@ router.route('/posts')
 	})
 
 	.post(function(req, res) {
-		var content = req.body.content;
-		var creator = req.body.creator;
+		var content = req.body.content || req.query.content;
+		var creator = req.body.creator || req.query.creator;
 
 		if (!creator) creator = 'Secret user';
 		if (!content) {
@@ -157,7 +157,7 @@ authRouter.use(function(req, res, next) {
 authRouter.route('/posts/:postId')
 	.put(function(req, res) {
 		var postId = req.params.postId;
-		var content = req.body.content;
+		var content = req.body.content || req.query.content;
 		if (!postId || !content) {
 		    return res.status(403).send({
 		        success: false,
