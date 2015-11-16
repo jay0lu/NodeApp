@@ -18,29 +18,29 @@ Node app is a a simple web app that everyone can use it to post some information
 
 ##Endpoint Docs
 ####For all users : 
-- Get all posts : `GET: /api/posts`
+- **Get all posts** : `GET: /api/posts`
 	- Notice : the posts are in the time order, newest post is in the first place
-- Get post with id : 
+- **Get post with id** : 
 	- `GET: /api/posts/{postId}`
 	- `GET: /api/posts?postId={postId}`
-- Get post with count limt : `GET: /api/posts?count={#}`
+- **Get post with count limt** : `GET: /api/posts?count={#}`
 	- Sample Request : `GET: /api/posts?count=2`
-- Query posts with keyword : `GET: /api/posts?keyword={keyword}`
-- Get post with creator : `GET: /api/posts?creator={creator}`
+- **Query posts with keyword** : `GET: /api/posts?keyword={keyword}`
+- **Get post with creator** : `GET: /api/posts?creator={creator}`
 	- Notice : `count`, `keyword` and `creator` can work together
 	- Sample Request : `GET: api/posts/keyword=hello&creator=leo&count=2` -- Get only 2 posts that created by leo and contains keyword hello
-- Create a post : `POST: /api/posts?content={content}&creator={creator}`
+- **Create a post** : `POST: /api/posts?content={content}&creator={creator}`
 	- Notice : `content`, and `creator` can be included in request body, `creator` is optional
 	- Sample Request : `POST: /api/posts?content=HelloWorld&creator=jack`
 
 ---
 ####For admin : 
-- GET admin token : `POST: /api/auth`
+- **GET admin token** : `POST: /api/auth`
 	- Notice : `username` and `password` should be either included in the request body, or in url params.
 	- Sample Request : POST: `POST: /api/auth?username=admin&password=admin` --- params are in url
-- Update a post : `PUT: /api/posts/{postId}?content={content}&token={token}`
+- **Update a post** : `PUT: /api/posts/{postId}?content={content}&token={token}`
 	- Notice : `content` and `token` also can be included in the request body
-- Delete a post with id : `DELETE: /api/posts/{postId}?token={token}`
+- **Delete a post with id** : `DELETE: /api/posts/{postId}?token={token}`
 	- Notice : `token` also can be in request body
 	- Sample Request : `DELETE: /api/posts/564a2fc626d7e822318e7c9f?token=...`
 
