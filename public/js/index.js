@@ -8,20 +8,13 @@ app.controller('postCtrl', function($scope, $http) {
         if (data != 'NOT FOUND') {
             $scope.postList = data;
         } else {
-            // $scope.postList = [{
-            //     'content' : 'Welcome to Node App, post you first message now!',
-            //     'creator' : 'admin'
-            // }];
+            $scope.postList = undefined;
         }
     });
 
     $scope.showBtn = function () {
         return token;
     };
-
-    // $scope.editPost = function ($event, post) {
-    //     console.log(token);
-    // };
 
     $scope.deletePost = function ($event, post) {
         $.ajax({
