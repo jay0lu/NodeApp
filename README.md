@@ -12,16 +12,9 @@ Node app is a a simple web app that everyone can use it to post some information
 - Start the server : `node server.js`
 - Open your browser and input : `http://localhost:3000`
 - Run nodeapp in production : `pm2 start server.js`
+
 ###Files Structure
-.
-|------models	
-|------public
-|------routes
-|------tools
-|------views
-app.js
-server.js
-config.js
+
 ###Endpoint Docs
 - Get all posts : `GET: /api/posts`
 	- Notice : the posts are in the time order, newest post is in the first place
