@@ -25,6 +25,9 @@ app.controller('postCtrl', function($scope, $http) {
             success: function(data) {
                 console.log(data);
                 refreshTable();
+            },
+            error: function(data){
+                refreshTable();
             }
         });
     };
