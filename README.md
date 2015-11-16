@@ -37,7 +37,7 @@ Node app is a a simple web app that everyone can use it to post some information
 ####For admin : 
 - **GET admin token** : `POST: /api/auth`
 	- Notice : `username` and `password` should be either included in the request body, or in url params.
-	- Sample Request : POST: `POST: /api/auth?username=admin&password=admin` --- params are in url
+	- Sample Request : `POST: /api/auth?username=admin&password=admin` --- params are in url
 - **Update a post** : `PUT: /api/posts/{postId}?content={content}&token={token}`
 	- Notice : `content` and `token` also can be included in the request body
 - **Delete a post with id** : `DELETE: /api/posts/{postId}?token={token}`
