@@ -1,9 +1,9 @@
-## Node App
+# Node App
 Node app is a a simple web app that everyone can use it to post some information. The app has an admin user that is able to manage those posts. The posts are also reachable by calling REST APIs.
 
-###Requirements
+##Requirements
 ```Node.js, Mongodb```
-###Installation & Setup
+##Installation & Setup
 - Clone the repo :  `git clone git@github.com:yizhiheng/NodeApp.git`
 - Go into directory : `cd NodeApp`
 - Install required packages : `npm install`
@@ -13,10 +13,10 @@ Node app is a a simple web app that everyone can use it to post some information
 - Open your browser and input : `http://localhost:3000`
 - Run nodeapp in production : `pm2 start server.js`
 
-###Sequence Diagram
+##Sequence Diagram
 ![alt tag](https://raw.github.com/yizhiheng/NodeApp/master/screenshots/SequenceDiagram.png)
 
-###Endpoint Docs
+##Endpoint Docs
 - Get all posts : `GET: /api/posts`
 	- Notice : the posts are in the time order, newest post is in the first place
 - Get post with id : 
@@ -44,7 +44,7 @@ Node app is a a simple web app that everyone can use it to post some information
 	- Sample Request : `DELETE: /api/posts/564a2fc626d7e822318e7c9f?token=...`
 
 
-###Implementation Architecture
+##Implementation Architecture
 Node App was built with Node.js. The web framework is Express.js. Briefly, it has following 4 components : 
 - **server & app** : defined the application and server to listen at a specific port
 - **views** : contain frontend ejs templates, express.js uses these template to render the html pages
