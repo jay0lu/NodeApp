@@ -54,7 +54,6 @@ router.route('/auth').post(function (req, res) {
 router.route('/posts')
 	.get(function(req, res) {
 		var postId = req.params.postId;
-		var createdAt = req.query.createdAt;
 		var count = Number(req.query.count);
 		var creator = req.query.creator;
 		var keyword = req.query.keyword;
@@ -68,7 +67,6 @@ router.route('/posts')
 		if (postId) query = query.where('postId').equals(postId);
 		if (creator) query = query.where('creator').equals(creator);
 		if (keyword) query = query.where('content').regex(keyword);
-		if (createdAt) {}
 
 		query.limit(count)
 		    .sort({
@@ -85,7 +83,6 @@ router.route('/posts')
 		            res.status(200).send(resJson);
 		        }
 		    });
-
 	})
 
 	.post(function(req, res) {
@@ -112,6 +109,7 @@ router.route('/posts')
 		        message: 'Post Created'
 		    });
 		});
+
 	});
 
 router.route('/posts/:postId').get(function (req, res) {

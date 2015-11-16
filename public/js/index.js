@@ -2,8 +2,9 @@ var app = angular.module('nodeapp', []);
 var token;
 
 app.controller('postCtrl', function($scope, $http) {
-
+    $('#posts_table').addClass('spinner-loader');
     $http.get('/api/posts').then(function(response) {
+        $('#posts_table').removeClass('spinner-loader');
         var data = response.data.data;
         if (data != 'NOT FOUND') {
             $scope.postList = data;
@@ -17,6 +18,7 @@ app.controller('postCtrl', function($scope, $http) {
     };
 
     $scope.deletePost = function ($event, post) {
+        $('#posts_table').addClass('spinner-loader');
         $.ajax({
             type: "DELETE",
             url: 'api/posts/' + post._id,
@@ -32,6 +34,7 @@ app.controller('postCtrl', function($scope, $http) {
 $("#post_form").submit(function(e) {
     e.preventDefault();
     e.stopImmediatePropagation();
+    $('#posts_table').addClass('spinner-loader');
     var content = $('#content_input').val();
     var creator = $('#creator_input').val();
     $.post("/api/posts/", {
@@ -68,6 +71,7 @@ $('#refresh_btn').click(function () {
 });
 
 $('#search_submit').click(function () {
+    $('#posts_table').addClass('spinner-loader');
     var keyword = $('#search_input').val();
     refreshTable({'keyword' : keyword});
 });
@@ -147,8 +151,7 @@ function checkPalindrom(str) {
 function refreshTable (data) {
     $('#posts_table').addClass('spinner-loader');
     var scope = angular.element($('#posts_table')).scope();
-
-    $.get('/api/posts', data,function( response ) {
+    $.get('/api/posts', data, function( response ) {
         if (response.data != 'NOT FOUND') {
             scope.postList = response.data;
         } else {
