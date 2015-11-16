@@ -17,6 +17,7 @@ Node app is a a simple web app that everyone can use it to post some information
 ![alt tag](https://raw.github.com/yizhiheng/NodeApp/master/screenshots/SequenceDiagram.png)
 
 ##Endpoint Docs
+####For all users : 
 - Get all posts : `GET: /api/posts`
 	- Notice : the posts are in the time order, newest post is in the first place
 - Get post with id : 
@@ -33,7 +34,7 @@ Node app is a a simple web app that everyone can use it to post some information
 	- Sample Request : `POST: /api/posts?content=HelloWorld&creator=jack`
 
 ---
-
+####For admin : 
 - GET admin token : `POST: /api/auth`
 	- Notice : `username` and `password` should be either included in the request body, or in url params.
 	- Sample Request : POST: `POST: /api/auth?username=admin&password=admin` --- params are in url
