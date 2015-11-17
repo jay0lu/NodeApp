@@ -29,6 +29,7 @@ If you are a **Docker** user, you can checkout to docker-branch, and build your 
 
 ![alt tag](https://raw.github.com/yizhiheng/NodeApp/master/screenshots/dockermachine.png)
 - **Open your favorite browser, goto link** : `http://192.168.99.100:3000`, you should be able to see the results
+
 ##Sequence Diagram
 ![alt tag](https://raw.github.com/yizhiheng/NodeApp/master/screenshots/SequenceDiagram.png)
 
