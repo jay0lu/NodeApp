@@ -80,6 +80,6 @@ function checkPalindrom(str) {
 ```
 On the index page, the browser can detect the user input and determine if it is a palindrome. 
 
-## license
+## License
 
 MIT
