@@ -15,7 +15,7 @@ Node.js, Mongodb, npm
 - **Run nodeapp in production** : `pm2 start server.js`
 
 ##Deployment with Docker
-If you are a **Docker** user, you can checkout to docker-branch, and build your own image with **Dockerfile**. It will set up anything for you. Here is a quick instruction for Docker 1.8.0 on OS X
+If you are a **Docker** user, you can checkout to docker branch, and build your own image with **Dockerfile**. It will set up anything for you. Here is a quick instruction for Docker 1.8.0 on OS X
 - **Clone the repo first** :  `git clone git@github.com:yizhiheng/NodeApp.git`
 - **Go to the right dir** : `cd NodeApp`
 - **Checkout to docker branch** : `git checkout docker`
