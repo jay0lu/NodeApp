@@ -12,7 +12,20 @@ Node app is a a simple web app that everyone can use it to post some information
 - Start the server : `node server.js`
 - Open your browser and input : `http://localhost:3000`
 - Run nodeapp in production : `pm2 start server.js`
-
+##Deployment with Docker
+If you are a docker user, you can checkout to docker-branch, and build your own image with Dockerfile. It will set up anything for you. Here is a quick instruction for docker 1.8.0 on OS X
+- Clone the repo first :  `git clone git@github.com:yizhiheng/NodeApp.git`
+- Go to the right dir : `cd NodeApp`
+- Checkout to docker branch : `git checkout docker`
+- Start your Docker daemon, the easiest way to do this is by clicking this icon : <img src="http://img.informer.com/icons_mac/png/128/321/321309.png" alt="docker icon" style="width:50px;height:50px">
+- Build docker image : `docker build -t <your name>/<your repo> .` (Don't forget the . period)
+- Grab a <img src="http://www.cliparthut.com/clip-arts/965/coffee-cup-clip-art-965206.png" alt="docker icon" style="width:30px;height:30px">, this process may take a while...
+- Check if your image is ready : `docker images`
+![alt tag](https://raw.github.com/yizhiheng/NodeApp/master/screenshots/dockerimage.png)
+- Run your new image : `docker run -p 3000:3000 -d <your name>/<your repo>`
+- Find address of your docker host vm : `docker-machine ls`, the address is `192.168.99.100` on my computer
+![alt tag](https://raw.github.com/yizhiheng/NodeApp/master/screenshots/dockermachine.png)
+- Open your favorite browser, goto link : `http://192.168.99.100:3000`, you should be able to see the results
 ##Sequence Diagram
 ![alt tag](https://raw.github.com/yizhiheng/NodeApp/master/screenshots/SequenceDiagram.png)
 
