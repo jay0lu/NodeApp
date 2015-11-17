@@ -2,7 +2,8 @@
 Node app is a a simple web app that everyone can use it to post some information. The app has an admin user that is able to manage those posts. The posts are also reachable by calling REST APIs.
 
 ##Requirements
-```Node.js, Mongodb```
+Node.js, Mongodb, npm
+
 ##Installation & Setup
 - **Clone the repo** :  `git clone git@github.com:yizhiheng/NodeApp.git`
 - **Go into directory** : `cd NodeApp`
