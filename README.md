@@ -12,6 +12,7 @@ Node app is a a simple web app that everyone can use it to post some information
 - Start the server : `node server.js`
 - Open your browser and input : `http://localhost:3000`
 - Run nodeapp in production : `pm2 start server.js`
+
 ##Deployment with Docker
 If you are a docker user, you can checkout to docker-branch, and build your own image with Dockerfile. It will set up anything for you. Here is a quick instruction for docker 1.8.0 on OS X
 - Clone the repo first :  `git clone git@github.com:yizhiheng/NodeApp.git`
