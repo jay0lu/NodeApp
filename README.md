@@ -70,3 +70,16 @@ Node App was built with Node.js. The web framework is Express.js. Briefly, it ha
 - **routes** : defined the endpoints (URIs) to the application and how it responds to client requests. Since the program logic is not very complicated, the app middleware was also implemented in here
 
 Bootstrap was used as the front-end framework. Also, jQuery and Angular.js were used for DOM manipulation and data binding.
+
+##Palindrome Detection
+The most straight-forward way to detect palindrome in Javasript is : 
+```javascript
+function checkPalindrom(str) {
+	return str == str.split('').reverse().join('');
+}
+```
+On the index page, the browser can detect the user input and determine if it is a palindrome. 
+
+## license
+
+MIT
