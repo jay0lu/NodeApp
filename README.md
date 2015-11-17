@@ -31,6 +31,14 @@ If you are a **Docker** user, you can checkout to docker-branch, and build your 
 ![alt tag](https://raw.github.com/yizhiheng/NodeApp/master/screenshots/dockermachine.png)
 - **Open your favorite browser, goto link** : `http://192.168.99.100:3000`, you should be able to see the results
 
+---
+
+If you are a super lazy person and you don't want to build docker image, you can just pull this public image from Docker Hub.
+- **Pull image for docker hub** : `docker pull yizhiheng/nodeapp`
+- **Run image** : `docker run -p 3000:3000 -d yizhiheng/nodeapp`
+- **Open your browser and see what's happening :)**
+
+
 ##Sequence Diagram
 ![alt tag](https://raw.github.com/yizhiheng/NodeApp/master/screenshots/SequenceDiagram.png)
 
