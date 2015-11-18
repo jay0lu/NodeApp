@@ -46,7 +46,6 @@ $("#post_form").submit(function(e) {
         function(data, status) {
             refreshTable();
         });
-    console.log('123');
     return false;
 });
 
@@ -172,4 +171,7 @@ function displayToken(token) {
         $('#token').show();
     }
 }
+
+
+
 
