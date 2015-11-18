@@ -12,7 +12,7 @@ Node.js, Mongodb, npm
 - **Set up the admin user** : `cd tools && node newAdmin.js`
 - **Start the server** : `node server.js`
 - **Open your browser and input** : `http://localhost:3000`
-- **Run nodeapp in production** : `pm2 start server.js`
+- **Run nodeapp in production** : `sudo npm install pm2 -g && pm2 start server.js`
 
 ##Deployment with Docker
 If you are a **Docker** user, you can checkout to docker branch, and build your own image with **Dockerfile**. It will set up anything for you. Here is a quick instruction for Docker 1.8.0 on OS X
